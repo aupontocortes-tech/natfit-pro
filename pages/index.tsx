@@ -31,7 +31,7 @@ export default function Home() {
   const [showDevPanel, setShowDevPanel] = useState(false)
 
   // Texto do herói editável
-  const [heroTitle, setHeroTitle] = useState('NATFIT PRO')
+  const [heroTitle, setHeroTitle] = useState('NatFit Pro')
   const [heroSubtitle, setHeroSubtitle] = useState(
     'Performance, estética e força em um só lugar. Descubra treinos, agendamentos e vídeo aulas pensados para você.'
   )

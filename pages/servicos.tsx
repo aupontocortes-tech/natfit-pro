@@ -154,7 +154,7 @@ export default function Servicos() {
       <main className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-8">
-            NATFIT PRO - Serviços
+            NatFit Pro - Serviços
           </h1>
           
           <div className="flex justify-center mb-8">

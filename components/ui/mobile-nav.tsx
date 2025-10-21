@@ -27,8 +27,8 @@ export default function MobileNav({ navigation }: MobileNavProps) {
       <nav className="w-full flex items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">NATFIT PRO</span>
-            <div className="h-8 w-auto font-bold text-primary">NATFIT PRO</div>
+            <span className="sr-only">NatFit Pro</span>
+            <div className="h-8 w-auto font-bold text-primary">NatFit Pro</div>
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -82,8 +82,8 @@ export default function MobileNav({ navigation }: MobileNavProps) {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">NATFIT PRO</span>
-              <div className="h-8 w-auto font-bold text-primary">NATFIT PRO</div>
+              <span className="sr-only">NatFit Pro</span>
+              <div className="h-8 w-auto font-bold text-primary">NatFit Pro</div>
             </a>
             <button
               type="button"
