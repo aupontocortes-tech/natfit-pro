@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="g3" x1="1" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#5a0000"/>
+      <stop offset="1" stop-color="#ff0000"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g3)"/>
+  <g opacity="0.18" fill="#ffffff">
+    <path d="M0 900 C300 750, 600 1050, 900 900 S1500 750, 1920 900 L1920 1080 L0 1080 Z" />
+    <path d="M0 640 C320 520, 640 820, 960 680 S1600 520, 1920 680 L1920 1080 L0 1080 Z" />
+  </g>
+  <text x="120" y="120" font-size="56" fill="#fff" opacity="0.8">Força • Foco • Resultado</text>
+</svg>
