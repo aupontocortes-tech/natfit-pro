@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import MobileNav from '../components/ui/mobile-nav'
 import { HomeIcon, BanknotesIcon, ShoppingBagIcon, UserCircleIcon, BellAlertIcon, ClipboardDocumentCheckIcon, LinkIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/24/outline'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -15,6 +16,10 @@ export default function AppPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Head>
+        <title>NatFit Pro — App</title>
+        <meta name="description" content="Área principal do app NatFit Pro." />
+      </Head>
       <MobileNav navigation={navigation} />
       <main className="px-4 py-6">
         {/* Moldura de dispositivo para focar no layout mobile */}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import MobileNav from '../components/ui/mobile-nav';
 import ThemeToggle from '../components/ui/theme-toggle';
 import { CalendarIcon, PlayCircleIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline';
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -153,9 +154,13 @@ export default function Servicos() {
       
       <main className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-center mb-8">
-            NatFit Pro - Serviços
-          </h1>
+          <Head>
+             <title>NatFit Pro — Serviços</title>
+             <meta name="description" content="Agendamento presencial, treinos personalizados e vídeo aulas." />
+           </Head>
+           <h1 className="text-4xl font-bold text-center mb-8">
+             NatFit Pro - Serviços
+           </h1>
           
           <div className="flex justify-center mb-8">
             <nav className="flex space-x-4 bg-card p-1 rounded-lg shadow">

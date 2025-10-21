@@ -3,6 +3,7 @@ import { ClipboardDocumentCheckIcon, PlayCircleIcon, CalendarIcon, CreditCardIco
 import { useEffect, useMemo, useState } from 'react'
 import QRCode from 'qrcode'
 import { useAuth } from '../contexts/AuthContext'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -168,6 +169,10 @@ export default function AlunoPage() {
       </div>
 
       <main className="px-6 py-10">
+        <Head>
+          <title>NatFit Pro — Aluno</title>
+          <meta name="description" content="Área do aluno: treinos, agenda, vídeos e pagamentos." />
+        </Head>
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Área do Aluno</h1>

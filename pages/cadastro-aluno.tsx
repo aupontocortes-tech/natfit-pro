@@ -1,5 +1,6 @@
 import MobileNav from '../components/ui/mobile-nav'
 import { useState } from 'react'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -60,6 +61,10 @@ export default function CadastroAlunoPage() {
       </div>
 
       <main className="px-6 py-10">
+        <Head>
+          <title>NatFit Pro — Cadastro de Aluno</title>
+          <meta name="description" content="Cadastre novos alunos e gerencie informações." />
+        </Head>
         <div className="max-w-3xl mx-auto space-y-8">
           <h1 className="text-3xl font-bold">Cadastro do Aluno</h1>
           <p className="text-sm text-foreground/70">Preencha seus dados para que a empresa personalize seu atendimento e treinos.</p>

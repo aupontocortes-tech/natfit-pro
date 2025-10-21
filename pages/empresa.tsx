@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import MobileNav from '../components/ui/mobile-nav'
 import { UserCircleIcon, LinkIcon } from '@heroicons/react/24/outline'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -120,6 +121,10 @@ export default function EmpresaPage() {
 
       <main className="px-6 py-10">
         <div className="max-w-7xl mx-auto space-y-8">
+          <Head>
+            <title>NatFit Pro — Empresa</title>
+            <meta name="description" content="Conheça a NatFit Pro, missão e valores." />
+          </Head>
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold">Empresa — Conhecer o Aluno</h1>
             <div className="flex items-center gap-2">

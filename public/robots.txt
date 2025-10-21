@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Atualize o domínio abaixo se usar custom domain
+Sitemap: https://natfitpro.vercel.app/sitemap.xml

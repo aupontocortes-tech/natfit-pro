@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import HeroSlider, { ImageConfig } from '../components/ui/hero-slider'
 import MobileNav from '../components/ui/mobile-nav'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -91,6 +92,10 @@ export default function Admin() {
       </div>
 
       <main className="px-6 py-10">
+        <Head>
+          <title>NatFit Pro — Admin</title>
+          <meta name="description" content="Painel de administração e editor de slider." />
+        </Head>
         <div className="max-w-7xl mx-auto space-y-10">
           <section className="bg-card text-card-foreground rounded-xl p-6 shadow">
             <h2 className="text-xl font-semibold">Editor de Imagens do Slider (somente desenvolvedor)</h2>

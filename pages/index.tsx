@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import HeroSlider, { ImageConfig } from '../components/ui/hero-slider'
 import { useEffect, useRef, useState } from 'react'
 import { KeyIcon, WrenchScrewdriverIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -210,6 +211,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
+      <Head>
+        <title>NatFit Pro — Home</title>
+        <meta name="description" content="NatFit Pro: treinos, serviços e gestão de alunos." />
+      </Head>
       <MobileNav navigation={navigation} />
       
       <main className="px-6 py-10">

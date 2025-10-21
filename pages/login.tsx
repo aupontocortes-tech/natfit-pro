@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import MobileNav from '../components/ui/mobile-nav'
 import { useAuth } from '../contexts/AuthContext'
+import Head from 'next/head'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -90,6 +91,10 @@ export default function LoginPage() {
     <div className="min-h-screen bg-background">
       <MobileNav navigation={navigation} />
       <main className="px-6 py-10">
+        <Head>
+          <title>NatFit Pro — Login</title>
+          <meta name="description" content="Acesse sua conta para gerenciar treinos e serviços." />
+        </Head>
         <div className="max-w-md mx-auto bg-card text-card-foreground rounded-xl p-6 shadow">
           <div className="flex gap-2 mb-4">
             <button
