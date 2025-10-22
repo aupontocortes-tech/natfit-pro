@@ -5,6 +5,7 @@ import HeroSlider, { ImageConfig } from '../components/ui/hero-slider'
 import { useEffect, useRef, useState } from 'react'
 import { KeyIcon, WrenchScrewdriverIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import Head from 'next/head'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'Produtos', href: '/' },
@@ -547,12 +548,12 @@ export default function Home() {
                 {heroSubtitle}
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href="/servicos"
+                <Link
+                  href="/servicos/"
                   className="inline-flex items-center rounded-md bg-primary px-6 py-3 text-white shadow hover:bg-primary/80"
                 >
                   Explorar Serviços
-                </a>
+                </Link>
                 <a
                   href="#planos"
                   className="inline-flex items-center rounded-md bg-secondary px-6 py-3 text-white shadow hover:bg-secondary/80"

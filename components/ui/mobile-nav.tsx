@@ -5,6 +5,7 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../contexts/AuthContext'
+import Link from 'next/link'
 
 interface NavigationItem {
   name: string;
@@ -26,10 +27,10 @@ export default function MobileNav({ navigation }: MobileNavProps) {
     <header className="bg-card sticky top-0 z-50 border-b border-border backdrop-blur">
       <nav className="w-full flex items-center justify-between p-4 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">NatFit Pro</span>
             <div className="h-8 w-auto font-bold text-primary">NatFit Pro</div>
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -43,16 +44,26 @@ export default function MobileNav({ navigation }: MobileNavProps) {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-16">
           {navigation.map((item) => {
-            const isActive = item.href !== '#' && pathname === item.href
-            return (
+            const hrefVal = item.href === '#' ? '#' : (item.href.endsWith('/') ? item.href : item.href + '/')
+            const isActive = item.href !== '#' && (pathname === item.href || pathname === hrefVal)
+            return item.href === '#' ? (
               <a
                 key={item.name}
-                href={item.href}
+                href="#"
                 className={`text-sm font-semibold leading-6 ${isActive ? 'text-primary' : 'text-foreground'} hover:text-primary`}
               >
                 {item.icon ? <item.icon className="h-4 w-4 inline mr-1 align-text-bottom" aria-hidden="true" /> : null}
                 {item.name}
               </a>
+            ) : (
+              <Link
+                key={item.name}
+                href={hrefVal}
+                className={`text-sm font-semibold leading-6 ${isActive ? 'text-primary' : 'text-foreground'} hover:text-primary`}
+              >
+                {item.icon ? <item.icon className="h-4 w-4 inline mr-1 align-text-bottom" aria-hidden="true" /> : null}
+                {item.name}
+              </Link>
             )
           })}
         </div>
@@ -67,11 +78,11 @@ export default function MobileNav({ navigation }: MobileNavProps) {
             </>
           ) : (
             (() => {
-              const loginActive = pathname === '/login'
+              const loginActive = pathname === '/login' || pathname === '/login/'
               return (
-                <a href="/login" className={`text-sm font-semibold leading-6 ${loginActive ? 'text-primary' : 'text-foreground'} hover:text-primary`}>
+                <Link href="/login/" className={`text-sm font-semibold leading-6 ${loginActive ? 'text-primary' : 'text-foreground'} hover:text-primary`}>
                   Login <span aria-hidden="true">&rarr;</span>
-                </a>
+                </Link>
               )
             })()
           )}
@@ -81,10 +92,10 @@ export default function MobileNav({ navigation }: MobileNavProps) {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border">
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">NatFit Pro</span>
               <div className="h-8 w-auto font-bold text-primary">NatFit Pro</div>
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-foreground"
@@ -98,17 +109,28 @@ export default function MobileNav({ navigation }: MobileNavProps) {
             <div className="-my-6 divide-y divide-border">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => {
-                  const isActive = item.href !== '#' && pathname === item.href
-                  return (
+                  const hrefVal = item.href === '#' ? '#' : (item.href.endsWith('/') ? item.href : item.href + '/')
+                  const isActive = item.href !== '#' && (pathname === item.href || pathname === hrefVal)
+                  return item.href === '#' ? (
                     <a
                       key={item.name}
-                      href={item.href}
+                      href="#"
                       className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'text-primary' : 'text-foreground'} hover:bg-secondary`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.icon ? <item.icon className="h-5 w-5 inline mr-2 align-text-bottom" aria-hidden="true" /> : null}
                       {item.name}
                     </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      href={hrefVal}
+                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${isActive ? 'text-primary' : 'text-foreground'} hover:bg-secondary`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.icon ? <item.icon className="h-5 w-5 inline mr-2 align-text-bottom" aria-hidden="true" /> : null}
+                      {item.name}
+                    </Link>
                   )
                 })}
               </div>
@@ -123,15 +145,15 @@ export default function MobileNav({ navigation }: MobileNavProps) {
                   </div>
                 ) : (
                   (() => {
-                    const loginActive = pathname === '/login'
+                    const loginActive = pathname === '/login' || pathname === '/login/'
                     return (
-                      <a
-                        href="/login"
+                      <Link
+                        href="/login/"
                         className={`-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 ${loginActive ? 'text-primary' : 'text-foreground'} hover:bg-secondary`}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Login
-                      </a>
+                      </Link>
                     )
                   })()
                 )}
