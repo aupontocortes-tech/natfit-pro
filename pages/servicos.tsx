@@ -4,6 +4,10 @@ import ThemeToggle from '../components/ui/theme-toggle';
 import { CalendarIcon, PlayCircleIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline';
 import Head from 'next/head'
 
+// Tipos para os treinos e dias disponíveis
+type Treino = { id: number; nome: string; nivel: string; duracao: string; foco: string };
+type DiaDisponivel = { id: number; dia: string; horarios: string[] };
+
 const navigation = [
   { name: 'Produtos', href: '/' },
   { name: 'Recursos', href: '#' },
