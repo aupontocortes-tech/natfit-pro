@@ -5,7 +5,14 @@ import { CalendarIcon, PlayCircleIcon, ClipboardDocumentCheckIcon } from '@heroi
 import Head from 'next/head'
 
 // Tipos para os treinos e dias disponíveis
-type Treino = { id: number; nome: string; nivel: string; duracao: string; foco: string };
+type Treino = {
+  id: number;
+  nome: string;
+  nivel: string;
+  duracao: string;
+  foco: string;
+  detalhes?: Array<{ nome: string; series: number; repeticoes: number; descanso: string }>;
+};
 type DiaDisponivel = { id: number; dia: string; horarios: string[] };
 
 const navigation = [
