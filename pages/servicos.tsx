@@ -12,7 +12,7 @@ const navigation = [
 ];
 
 // Dados de exemplo para os treinos
-const treinosExemplo = [
+const treinosExemplo: Treino[] = [
   { id: 1, nome: 'Agendamento de Aula Presencial', nivel: 'Intermediário', duracao: '60 min', foco: 'Diário' },
   { id: 2, nome: 'Treinos Personalizados', nivel: 'Avançado', duracao: '60 min', foco: 'Diário' },
   { id: 3, nome: 'Treino Funcional', nivel: 'Iniciante', duracao: '60 min', foco: 'Diário' },
@@ -20,7 +20,7 @@ const treinosExemplo = [
 
 // Horários disponíveis de 05:00 até 22:00 (a cada 1 hora)
 const hourSlots = Array.from({ length: 18 }, (_, i) => `${String(5 + i).padStart(2, '0')}:00`)
-const horariosDisponiveis = [
+const horariosDisponiveis: DiaDisponivel[] = [
   { id: 1, dia: 'Segunda', horarios: hourSlots },
   { id: 2, dia: 'Terça', horarios: hourSlots },
   { id: 3, dia: 'Quarta', horarios: hourSlots },
@@ -87,9 +87,9 @@ const todosExercicios = Array.from(new Set(Object.values(exerciciosPorGrupo).fla
 
 export default function Servicos() {
   const [activeTab, setActiveTab] = useState('treinos');
-  const [selectedTreino, setSelectedTreino] = useState(null);
-  const [selectedDia, setSelectedDia] = useState(null);
-  const [selectedHorario, setSelectedHorario] = useState(null);
+  const [selectedTreino, setSelectedTreino] = useState<Treino | null>(null);
+  const [selectedDia, setSelectedDia] = useState<DiaDisponivel | null>(null);
+  const [selectedHorario, setSelectedHorario] = useState<string | null>(null);
   const [customStart, setCustomStart] = useState<string | null>(null);
   const [customEnd, setCustomEnd] = useState<string | null>(null);
   const rangeValido = customStart && customEnd ? toMinutes(customStart) < toMinutes(customEnd) : false;
@@ -377,14 +377,14 @@ export default function Servicos() {
                           className={`px-4 py-2 rounded-md text-white ${dayPlanExercises.length > 0 ? 'bg-primary hover:bg-primary/80' : 'bg-gray-400 cursor-not-allowed'}`}
                           disabled={dayPlanExercises.length === 0}
                           onClick={() => {
-                            const treinoPersonalizado = {
+                            const treinoPersonalizado: Treino = {
                               id: Date.now(),
                               nome: 'Treino Personalizado',
                               nivel: 'Personalizado',
                               duracao: '60 min',
                               foco: customGroup,
                               detalhes: dayPlanExercises,
-                            } as any;
+                            };
                             setSelectedTreino(treinoPersonalizado);
                             setActiveTab('agendamento');
                           }}
