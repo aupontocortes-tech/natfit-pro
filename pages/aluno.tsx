@@ -112,8 +112,8 @@ export default function AlunoPage() {
 
   const confirmarPagamento = (id: string, metodo: 'pix' | 'cartao') => {
     if (!registros) return
-    const pagos = (registros.pagamentos || []).map(p =>
-      p.id === id ? { ...p, status: 'aprovado', metodo } : p
+    const pagos: Pagamento[] = (registros.pagamentos || []).map((p: Pagamento) =>
+      p.id === id ? { ...p, status: 'aprovado' as const, metodo } : p
     )
     persistRegistros({ ...registros, pagamentos: pagos })
   }

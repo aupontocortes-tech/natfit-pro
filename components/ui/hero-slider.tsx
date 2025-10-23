@@ -25,10 +25,15 @@ export default function HeroSlider({
 }: HeroSliderProps) {
   const [index, setIndex] = useState(0)
 
+  // Garantir lista tipada para evitar erro de união de tipos
+  const renderList: ImageConfig[] = imageConfigs?.length
+    ? imageConfigs
+    : (images || []).map((src) => ({ src } as ImageConfig))
+
   useEffect(() => {
-    const list = imageConfigs?.length
+    const list: ImageConfig[] = imageConfigs?.length
       ? imageConfigs
-      : (images || []).map((src) => ({ src }))
+      : (images || []).map((src) => ({ src } as ImageConfig))
     if (!list || list.length === 0) return
     const id = setInterval(() => {
       setIndex((prev) => (prev + 1) % list.length)
@@ -39,10 +44,7 @@ export default function HeroSlider({
   return (
     <section className={`relative h-[75vh] w-full overflow-hidden rounded-2xl shadow ${className}`}>
       {/* Slides */}
-      {(imageConfigs?.length
-        ? imageConfigs
-        : (images || []).map((src) => ({ src }))
-      ).map((cfg, i) => (
+      {renderList.map((cfg, i) => (
         <div
           key={`${cfg.src}-${i}`}
           className={`absolute inset-0 transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0'}`}

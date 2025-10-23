@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { setOtp, getOtp, clearOtp } from '../lib/otpStore'
 
 type User = { email: string }
 type AuthContextType = {
@@ -27,6 +28,7 @@ async function hashPassword(password: string): Promise<string> {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
+  const staticMode = process.env.NEXT_PUBLIC_STATIC_MODE === 'true'
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -75,8 +77,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  // value será definido após incluir todas as funções (reset, otp, etc.)
+  function genCode() {
+    return String(Math.floor(100000 + Math.random() * 900000))
+  }
+
   async function requestOtp(email: string) {
+    if (staticMode) {
+      const code = genCode()
+      setOtp(email, code)
+      console.log('[NatFit Pro][OTP] Código gerado para', email, ':', code)
+      return true
+    }
     try {
       const resp = await fetch('/api/auth/send-otp', {
         method: 'POST',
@@ -90,6 +101,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   async function verifyOtp(email: string, code: string) {
+    if (staticMode) {
+      const rec = getOtp(email)
+      if (!rec || rec.code !== code) return false
+      clearOtp(email)
+      const u = { email }
+      setUser(u)
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('natfit_auth_user', JSON.stringify(u))
+      }
+      return true
+    }
     try {
       const resp = await fetch('/api/auth/verify-otp', {
         method: 'POST',
@@ -120,7 +142,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return true
   }
 
-  const value = useMemo(() => ({ user, login, register, resetPassword, requestOtp, verifyOtp, logout }), [user])
+  const value = useMemo(() => ({ user, login, register, resetPassword, requestOtp, verifyOtp, logout }), [user, staticMode])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
