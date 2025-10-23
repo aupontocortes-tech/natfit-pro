@@ -15,6 +15,16 @@ type Treino = {
 };
 type DiaDisponivel = { id: number; dia: string; horarios: string[] };
 
+// Tipo para vídeos
+type VideoItem = {
+  id: number;
+  titulo: string;
+  duracao: string;
+  nivel: string;
+  thumbnail: string;
+  legenda?: string;
+};
+
 const navigation = [
   { name: 'Produtos', href: '/' },
   { name: 'Recursos', href: '#' },
@@ -106,7 +116,7 @@ export default function Servicos() {
   const rangeValido = customStart && customEnd ? toMinutes(customStart) < toMinutes(customEnd) : false;
   const [agendamentoSucesso, setAgendamentoSucesso] = useState(false);
   // Gerenciador de Vídeo Aulas
-  const [videos, setVideos] = useState(
+  const [videos, setVideos] = useState<VideoItem[]>(
     videoAulas.map((v) => ({ ...v, legenda: '' }))
   );
   const [novoTitulo, setNovoTitulo] = useState('');
@@ -135,14 +145,14 @@ export default function Servicos() {
   // Handlers de Vídeo Aulas (adicionar/remover/editar legenda)
   const handleAdicionarVideo = () => {
     if (!novoTitulo.trim() || !novoThumb.trim()) return;
-    const novo = {
+    const novo: VideoItem = {
       id: Date.now(),
       titulo: novoTitulo.trim(),
       duracao: '',
       nivel: '',
       thumbnail: novoThumb.trim(),
       legenda: novaLegenda.trim(),
-    } as any;
+    };
     setVideos((prev) => [novo, ...prev]);
     setNovoTitulo('');
     setNovoThumb('');
